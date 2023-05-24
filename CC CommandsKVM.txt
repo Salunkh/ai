@@ -1,0 +1,11 @@
+sudo apt-get update
+egrep -c '(vmx|svm)' /proc/cpuinfo
+sudo kvm-ok
+sudo apt install cpu-checker
+sudo kvm-ok
+sudo apt install -y qemu qemu-kvm libvirt-daemon libvirt-clients bridge-utils virt-manager
+sudo systemctl status libvirtd
+sudo systemctl enable --now libvirtd
+lsmod | grep -i kvm
+sudo virt-install --name=deepin-vm --os-variant=Debian10 --vcpu=2 --ram=2048 --graphics spice --location=/home/Downloads/deepin-20Beta-desktop-amd64.iso --network bridge:vibr0
+osinfo-query os
